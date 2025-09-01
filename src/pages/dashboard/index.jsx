@@ -4,7 +4,14 @@ import styles from "./dashboard.module.css";
 import ButtonComp from "../../components/ButtonComp";
 import TextField from "../../components/textField";
 import { db } from "../../firebase.js";
-import { addDoc, collection, deleteDoc, getDocs, updateDoc, doc } from "firebase/firestore";
+import {
+  addDoc,
+  collection,
+  deleteDoc,
+  getDocs,
+  updateDoc,
+  doc,
+} from "firebase/firestore";
 
 const Dashboard = () => {
   let [todos, setTodos] = useState([]);
@@ -55,33 +62,53 @@ const Dashboard = () => {
     }
   };
 
-  const clearHandler = () => {
-    if (todos.length < 1) return;
-    const permission = confirm("Are you Sure You Want To Delete All Todos?")
-      ? setTodos([])
-      : alert("Your Todos Are not Deleted");
+  const clearHandler = async () => {
+    try {
+      if (todos.length < 1) return;
+      const permission = confirm(
+        "Are you Sure? You Want To Delete All Todos..."
+      );
+
+      if (confirm) {
+        const querySnapShot = await getDocs(collection(db, "todos"));
+        querySnapShot.docs.map((data) => {
+          deleteDoc(doc(db, "todos", data.id));
+        });
+
+        fetchData();
+      }
+    } catch (error) {
+      console.log(error.message);
+    }
   };
 
-  const saveHandler = (index) => {
-    if (editedVal.length < 3) {
-      alert("Value must be 3 or more characters");
-      return;
-    }
+  const saveHandler = async (id) => {
+    try {
+      if (editedVal.length < 3) {
+        alert("Value must be 3 or more characters");
+        return;
+      }
 
-    todos.splice(index, 1, editedVal);
-    setTodos([...todos]);
-    setEditIndexNumber(null);
+      await updateDoc(doc(db, "todos", id), {
+        value: editedVal,
+        updatedAt: new Date(),
+      });
+
+      setEditedVal("");
+      setEditIndexNumber(null);
+      fetchData();
+    } catch (error) {}
   };
 
   const editHandler = (index) => {
+    setEditedVal(todos[index].value);
     setEditIndexNumber(index);
   };
 
   const deleteHandler = async (id) => {
     try {
-      await deleteDoc(doc(db, "todos", id))
-      fetchData()
-
+      await deleteDoc(doc(db, "todos", id));
+      fetchData();
     } catch (error) {
       console.log(error.message);
     }
@@ -128,7 +155,7 @@ const Dashboard = () => {
         <ul>
           {todos.map(({ value, id }, index) => {
             return editIndexNumber == index ? (
-              <li className="textField_parent">
+              <li className="textField_parent" key={index}>
                 <TextField
                   placeholder="Edit Todo..."
                   onChange={(event) => {
@@ -144,7 +171,7 @@ const Dashboard = () => {
                       : "rgb(55, 225, 197)",
                     color: saveBtnHover ? "#fff" : "#000",
                   }}
-                  onClick={saveHandler}
+                  onClick={() => saveHandler(id)}
                   onMouseEnter={() => setSaveBtnHover(true)}
                   onMouseLeave={() => setSaveBtnHover(false)}
                 />
