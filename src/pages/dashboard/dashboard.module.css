@@ -20,7 +20,7 @@ main {
   padding: 20px;
 }
 
-/* Input container */
+
 .input_parent {
   min-height: 20vh;
   width: 100%;
@@ -32,7 +32,7 @@ main {
   padding: 10px;
 }
 
-/* Todo list */
+
 main ul {
   flex: 1;
   width: 100%;
@@ -47,7 +47,7 @@ main ul {
   padding-bottom: 20px;
 }
 
-/* Input & List items */
+
 .textField_parent,
 main ul li {
   width: 90%;
@@ -62,7 +62,7 @@ main ul li {
   background: rgba(255, 255, 255, 0.05);
 }
 
-/* Headings inside items */
+
 main ul li h4 {
   color: #fff;
   font-size: 1rem;
@@ -84,7 +84,7 @@ main ul li h4 {
   font-size: 0.9rem;
 }
 
-/* Edit Button */
+
 .editBtn {
   background-color: rgb(55, 225, 197);
   color: #000;
@@ -96,7 +96,7 @@ main ul li h4 {
   color: #fff;
 }
 
-/* Delete Button */
+
 .deleteBtn {
   background-color: rgb(192, 40, 58);
   color: #fff;
@@ -108,7 +108,7 @@ main ul li h4 {
   color: #fff;
 }
 
-/* 📱 Responsive Breakpoints */
+
 @media (max-width: 768px) {
   .textField_parent,
   main ul li {
