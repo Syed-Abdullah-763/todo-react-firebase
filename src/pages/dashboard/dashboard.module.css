@@ -1,0 +1,142 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body,
+html {
+  height: 100%;
+  width: 100%;
+}
+
+main {
+  min-height: 100vh;
+  width: 100%;
+  background-color: rgb(3, 84, 70);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px;
+}
+
+/* Input container */
+.input_parent {
+  min-height: 20vh;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  flex-wrap: wrap;
+  padding: 10px;
+}
+
+/* Todo list */
+main ul {
+  flex: 1;
+  width: 100%;
+  max-width: 900px;
+  list-style: none;
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  flex-direction: column;
+  overflow-y: auto;
+  scrollbar-width: none;
+  padding-bottom: 20px;
+}
+
+/* Input & List items */
+.textField_parent,
+main ul li {
+  width: 90%;
+  max-width: 700px;
+  min-height: 60px;
+  padding: 10px 20px;
+  border: 1px solid rgb(55, 225, 197);
+  border-radius: 13px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: rgba(255, 255, 255, 0.05);
+}
+
+/* Headings inside items */
+main ul li h4 {
+  color: #fff;
+  font-size: 1rem;
+  word-break: break-word;
+}
+
+/* Buttons */
+.todo_btns {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.todo_btns button {
+  height: 35px;
+  min-width: 70px;
+  border-radius: 10px;
+  border: none;
+  font-size: 0.9rem;
+}
+
+/* Edit Button */
+.editBtn {
+  background-color: rgb(55, 225, 197);
+  color: #000;
+  cursor: pointer;
+  transition: all ease 0.3s;
+}
+.editBtn:hover {
+  background-color: rgb(45, 174, 152);
+  color: #fff;
+}
+
+/* Delete Button */
+.deleteBtn {
+  background-color: rgb(192, 40, 58);
+  color: #fff;
+  cursor: pointer;
+  transition: all ease 0.3s;
+}
+.deleteBtn:hover {
+  background-color: rgb(140, 31, 44);
+  color: #fff;
+}
+
+/* 📱 Responsive Breakpoints */
+@media (max-width: 768px) {
+  .textField_parent,
+  main ul li {
+    width: 95%;
+    min-height: 55px;
+    padding: 10px 15px;
+  }
+
+  main ul li h4 {
+    font-size: 0.95rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .textField_parent,
+  main ul li {
+    width: 100%;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+    padding: 15px;
+  }
+
+  .todo_btns {
+    justify-content: flex-start;
+  }
+
+  .todo_btns button {
+    min-width: 100%;
+  }
+}
