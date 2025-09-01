@@ -1,8 +1,30 @@
 .btn {
-    height: 38px;
-    width: 85px;
-    border-radius: 20px;
-    border: none;
-    cursor: pointer;
-    transition: all ease 0.3s;
+  padding: 10px 20px;
+  min-width: 85px;
+  height: auto; 
+  border-radius: 20px;
+  border: none;
+  cursor: pointer;
+  font-size: 1rem;
+  transition: all ease 0.3s;
+  text-align: center;
+  white-space: nowrap;
+}
+
+
+@media (max-width: 768px) {
+  .btn {
+    padding: 9px 18px;
+    font-size: 0.95rem;
+    min-width: 75px;
+  }
+}
+
+
+@media (max-width: 480px) {
+  .btn {
+    width: 100%;
+    padding: 12px;
+    font-size: 0.9rem;
+  }
 }
