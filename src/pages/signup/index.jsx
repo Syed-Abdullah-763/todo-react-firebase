@@ -9,7 +9,6 @@ const Signup = () => {
   const [lastName, setLastName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [useObj, setUserObj] = useState({});
 
   const navigate = useNavigate();
 
@@ -17,7 +16,7 @@ const Signup = () => {
     try {
       await createUserWithEmailAndPassword(auth, email, password);
 
-      navigate("/dashboard");
+      navigate("/dashboard", { replace: true });
     } catch (error) {
       console.log(error.message);
     }

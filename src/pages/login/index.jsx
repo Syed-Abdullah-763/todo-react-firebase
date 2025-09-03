@@ -1,8 +1,25 @@
-import React from "react";
-import styles from "./login.module.css"
-import { Link } from "react-router-dom";
+import React, { useState } from "react";
+import styles from "./login.module.css";
+import { Link, useNavigate } from "react-router-dom";
+import { auth } from "../../firebase.js";
+import { signInWithEmailAndPassword } from "firebase/auth";
 
 const Login = () => {
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+
+  const navigate = useNavigate();
+
+  const loginHandler = async () => {
+    try {
+      await signInWithEmailAndPassword(auth, email, password);
+
+      navigate("/dashboard", { replace: true });
+    } catch (error) {
+      alert(error.message);
+    }
+  };
+
   return (
     <>
       <main className={styles.main}>
@@ -10,13 +27,16 @@ const Login = () => {
           <h2 className={styles.heading}>Welcome Back 👋</h2>
           <p className={styles.subHeading}>Login to your account</p>
 
-          <form className={styles.form}>
+          <div className={styles.form}>
             <div className={styles.inputGroup}>
               <input
                 type="email"
                 placeholder="Email"
                 required
                 className={styles.input}
+                onChange={(e) => {
+                  setEmail(e.target.value);
+                }}
               />
             </div>
             <div className={styles.inputGroup}>
@@ -25,12 +45,15 @@ const Login = () => {
                 placeholder="Password"
                 required
                 className={styles.input}
+                onChange={(e) => {
+                  setPassword(e.target.value);
+                }}
               />
             </div>
-            <button type="submit" className={styles.loginBtn}>
+            <button className={styles.loginBtn} onClick={loginHandler}>
               Login
             </button>
-          </form>
+          </div>
 
           <p className={styles.footerText}>
             Don’t have an account? <Link to="/signup">Sign Up</Link>
