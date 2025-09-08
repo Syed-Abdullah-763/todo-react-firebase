@@ -3,6 +3,9 @@ import { useState } from "react";
 import styles from "./dashboard.module.css";
 import ButtonComp from "../../components/ButtonComp";
 import TextField from "../../components/textField";
+import LogoutButton from "../../components/logout/index.jsx";
+import { useNavigate } from "react-router-dom";
+
 import { db } from "../../firebase.js";
 import {
   addDoc,
@@ -114,9 +117,18 @@ const Dashboard = () => {
     }
   };
 
+  const navigate = useNavigate();
+  const logOutHandler = () => {
+    localStorage.removeItem("uid");
+    navigate("/");
+  };
+
   return (
     <>
       <main>
+        <div className={styles.logoutContainer}>
+          <LogoutButton onClick={logOutHandler} />
+        </div>
         <div className={styles.input_parent}>
           <TextField
             placeholder="Enter Todo Here..."

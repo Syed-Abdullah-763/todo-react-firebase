@@ -12,7 +12,9 @@ const Login = () => {
 
   const loginHandler = async () => {
     try {
-      await signInWithEmailAndPassword(auth, email, password);
+      const response = await signInWithEmailAndPassword(auth, email, password);
+
+      localStorage.setItem("uid", response.user.uid);
 
       navigate("/dashboard", { replace: true });
     } catch (error) {

@@ -14,7 +14,13 @@ const Signup = () => {
 
   const submitHandler = async () => {
     try {
-      await createUserWithEmailAndPassword(auth, email, password);
+      const response = await createUserWithEmailAndPassword(
+        auth,
+        email,
+        password
+      );
+
+      localStorage.setItem("uid", response.user.uid);
 
       navigate("/dashboard", { replace: true });
     } catch (error) {

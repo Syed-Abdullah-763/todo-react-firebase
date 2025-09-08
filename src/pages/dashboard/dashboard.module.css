@@ -20,6 +20,10 @@ main {
   padding: 20px;
 }
 
+.logoutContainer {
+  height: 5vh;
+  width: 100%;
+}
 
 .input_parent {
   min-height: 20vh;
@@ -31,7 +35,6 @@ main {
   flex-wrap: wrap;
   padding: 10px;
 }
-
 
 main ul {
   flex: 1;
@@ -47,7 +50,6 @@ main ul {
   padding-bottom: 20px;
 }
 
-
 .textField_parent,
 main ul li {
   width: 90%;
@@ -61,7 +63,6 @@ main ul li {
   justify-content: space-between;
   background: rgba(255, 255, 255, 0.05);
 }
-
 
 main ul li h4 {
   color: #fff;
@@ -84,7 +85,6 @@ main ul li h4 {
   font-size: 0.9rem;
 }
 
-
 .editBtn {
   background-color: rgb(55, 225, 197);
   color: #000;
@@ -96,7 +96,6 @@ main ul li h4 {
   color: #fff;
 }
 
-
 .deleteBtn {
   background-color: rgb(192, 40, 58);
   color: #fff;
@@ -107,7 +106,6 @@ main ul li h4 {
   background-color: rgb(140, 31, 44);
   color: #fff;
 }
-
 
 @media (max-width: 768px) {
   .textField_parent,
